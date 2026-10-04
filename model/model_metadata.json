@@ -1,0 +1,126 @@
+{
+    "project_title": "Student Employability Prediction and Career Recommendation System Using Machine Learning",
+    "training_timestamp": "2026-10-04 18:33:45",
+    "model_architecture": "Logistic Regression within Scikit-Learn Pipeline",
+    "scikit_learn_version": "joblib",
+    "dataset_source": "data/UECD_1200_dataset.csv (1200 rows raw, 620 non-null target ground truth)",
+    "train_samples": 496,
+    "test_samples": 124,
+    "features_count": 28,
+    "feature_names": [
+        "GPA",
+        "Core_Subject_Score",
+        "Academic_Consistency",
+        "Research_Participation",
+        "Programming_Skill",
+        "Domain_Knowledge",
+        "Tool_Proficiency",
+        "Certification_Count",
+        "Internship_Count",
+        "Internship_Duration",
+        "Industry_Relevance",
+        "Project_Experience",
+        "Communication_Skill",
+        "Teamwork_Ability",
+        "Leadership_Potential",
+        "Adaptability",
+        "Learning_Motivation",
+        "Career_Clarity",
+        "Market_Awareness",
+        "Higher_Study_Interest",
+        "Target_Industry_Code",
+        "Workshop_Participation",
+        "Online_Course_Hours",
+        "Networking_Activity",
+        "Learning_Path_Generation_Time",
+        "Technical_Readiness_Index",
+        "Soft_Skill_Score",
+        "Practical_Exposure_Score"
+    ],
+    "preprocessing_pipeline": [
+        "SimpleImputer(strategy='median')",
+        "StandardScaler()"
+    ],
+    "feature_engineering": [
+        "Technical_Readiness_Index = (Programming_Skill + Domain_Knowledge + Tool_Proficiency) / 3.0",
+        "Soft_Skill_Score = (Communication_Skill + Teamwork_Ability + Leadership_Potential + Adaptability) / 4.0",
+        "Practical_Exposure_Score = (Project_Experience / 7 * 30) + (Internship_Duration / 18 * 30) + (Certification_Count / 5 * 20) + (Industry_Relevance * 20)"
+    ],
+    "best_model_name": "Grid Search CV",
+    "best_hyperparameters": {
+        "C": 10.0,
+        "penalty": "l1",
+        "solver": "saga"
+    },
+    "best_model_metrics": {
+        "cv_f1_mean": 0.9492,
+        "cv_f1_std": 0.0176,
+        "test_accuracy": 0.9839,
+        "test_precision": 0.9615,
+        "test_recall": 0.9615,
+        "test_f1": 0.9615,
+        "test_roc_auc": 0.9992
+    },
+    "all_experiments": [
+        {
+            "model_name": "Baseline Logistic Regression",
+            "best_params": {
+                "C": 1.0,
+                "penalty": "l2",
+                "solver": "liblinear"
+            },
+            "cv_f1_mean": 0.8852,
+            "cv_f1_std": 0.0165,
+            "accuracy": 0.9677,
+            "precision": 0.8667,
+            "recall": 1.0,
+            "f1": 0.9286,
+            "roc_auc": 0.9957
+        },
+        {
+            "model_name": "Grid Search CV",
+            "best_params": {
+                "C": 10.0,
+                "penalty": "l1",
+                "solver": "saga"
+            },
+            "cv_f1_mean": 0.9492,
+            "cv_f1_std": 0.0176,
+            "accuracy": 0.9839,
+            "precision": 0.9615,
+            "recall": 0.9615,
+            "f1": 0.9615,
+            "roc_auc": 0.9992
+        },
+        {
+            "model_name": "Random Search CV",
+            "best_params": {
+                "solver": "saga",
+                "penalty": "l1",
+                "C": 4.4062
+            },
+            "cv_f1_mean": 0.9454,
+            "cv_f1_std": 0.0185,
+            "accuracy": 0.9919,
+            "precision": 0.963,
+            "recall": 1.0,
+            "f1": 0.9811,
+            "roc_auc": 0.9992
+        },
+        {
+            "model_name": "Optuna Bayesian Optimization",
+            "best_params": {
+                "C": 8.431,
+                "penalty": "l1",
+                "solver": "saga"
+            },
+            "cv_f1_mean": 0.9492,
+            "cv_f1_std": 0.0176,
+            "accuracy": 0.9839,
+            "precision": 0.9615,
+            "recall": 0.9615,
+            "f1": 0.9615,
+            "roc_auc": 0.9992
+        }
+    ]
+}
